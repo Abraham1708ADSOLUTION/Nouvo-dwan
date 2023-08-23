@@ -1,0 +1,136 @@
+<div class="icon-colum-container">
+  <div class="colums">
+    {% for section in section.blocks %}
+      <div class="colum">
+        <div class="icon-colum">
+          <img src="{{ section.settings.icon-colum | img_url: 'small' }}" alt="{{ image.alt }}" width="auto" height="auto" loading="lazy">
+        </div>
+        <div class="text-colum">
+          <h4>
+            {{- section.settings['text-colum-title'] | upcase -}}
+          </h4>
+          <p>{{- section.settings['descripcion-icon'] -}}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .icon-colum-container {
+    background-color: #c1b099;
+    width: 100%;
+    height: 100%;
+    padding-top: 75px;
+    padding-bottom: 75px;
+  }
+
+  .icon-colum img {
+    height: 55px;
+    width: 55px;
+  }
+
+  .colums {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+
+    place-items: center;
+  }
+
+  .colum {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+  }
+
+  .text-colum {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .text-colum p {
+    padding-top: 0 !important;
+    margin: 4px 0 0;
+  }
+
+  .text-colum h4 {
+    font-weight: 500;
+    color: #fff;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+  }
+  .text-colum p {
+    color: #fff;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  @media(max-width: 990px) {
+    .colums {
+      grid-template-columns: repeat(2, 1fr);
+      height: 100%;
+      width: 100%;
+      margin: 16px;
+      place-items: center;
+    }
+
+    .icon-colum-container {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .colum {
+      padding: 18px;
+    }
+
+    .colums {
+      margin: 0;
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Lista de iconos",
+    "class": "icons",
+    "settings": [],
+
+    "blocks": [
+      {
+        "name": "Icono",
+        "type": "iconos",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon-colum",
+            "label": "Selecciona una imagen"
+          }, {
+            "type": "text",
+            "id": "text-colum-title",
+            "label": "Titulo"
+          }, {
+            "type": "richtext",
+            "id": "descripcion-icon",
+            "label": "Descripcion"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Lista de iconos",
+        "blocks": []
+      }
+    ]
+  }
+{% endschema %}

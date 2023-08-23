@@ -1,0 +1,115 @@
+<div class="w-full h-full mt-5">
+  <div class="grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 ">
+    <div class="flex items-center flex-col w-full h-full justify-center" style="background-color: {{ section.settings.color-bg }} ;">
+      <div class=" text-white text-center mx-7">
+        <h3 class="text-white text-3xl pb-6 md:text-4xl">{{ section.settings.header }}</h3>
+       <span class=" my-9 "> {{ section.settings.subtext }}</span>
+        <a class="inline-block pt-8 button--link text-base" href=" {{ section.settings.link-url }}"> {{ section.settings.btn-name }} </a>
+      </div>
+    </div>
+
+    <div>
+      <img src="{{ section.settings.img | img_url: '3000x' }}" alt="" width="auto" height="auto" loading="lazy">
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  a.button--link {
+    font-size: 24px;
+    color: #ffffff;
+    font-family: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    text-transform: uppercase;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: color;
+  }
+
+  a.button--link:focus,
+  a.button--link:hover {
+    color: #fff;
+  }
+
+  a.button--link:focus:after,
+  a.button--link:hover:after {
+    width: 100%;
+    left: 0%;
+  }
+
+  a.button--link:after {
+    content: '';
+    pointer-events: none;
+    bottom: -14px;
+    left: 50%;
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-duration: 400ms;
+    transition-property: width, left;
+  }
+
+  @media only screen and (max-width: 600px){
+    a.button--link:after {
+      content: '';
+      left: 0%;
+      width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Image con texto",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext"
+    },
+    {
+      "type": "text",
+      "id": "btn-name",
+      "label": "Boton",
+      "default": "Contacto"
+    },
+    {
+      "type": "url",
+      "id": "link-url",
+      "label": "Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "img",
+      "label": "Selecciona una imagen",
+      "info": "Tamaño de imagen sugeria de 1080x1080 px"
+    },
+    {
+      "type": "color",
+      "id": "color-bg",
+      "label": "Selecciona un color",
+      "default": "#000"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Texto con imagen Adsolution"
+    }
+  ]
+}
+{% endschema %}
